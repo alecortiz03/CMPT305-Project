@@ -1,5 +1,7 @@
 package app.bike;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -38,6 +40,7 @@ public class URLClass {
                 in.close();
                 connection.disconnect();
 
+                ObjectMapper mapper = new ObjectMapper();
                 // Print the response
                 return content.toString();
             } else {
