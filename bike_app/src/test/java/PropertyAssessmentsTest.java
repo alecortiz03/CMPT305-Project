@@ -4,10 +4,16 @@ public class PropertyAssessmentsTest {
         Location location1 = new Location();
         Neighborhood neighborhood1 = new Neighborhood();
         Address address1 = new Address();
+        AssessmentClass assessmentClass1 = new AssessmentClass();
+        AssessmentClasses assessmentClasses = new AssessmentClasses();
+        
+        
         
 
     @Test
     void testAddAssessment() {
+
+        
 
     }
 
