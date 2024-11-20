@@ -12,17 +12,12 @@ import java.util.List;
 
 
 public class URLClass {
-    private final String url;
-    public URLClass(String urlLink) {
-        this.url = urlLink;
 
-    }
-
-    public List<JSONObject> URLParse() {
+    public static List<JSONObject> URLParse(String url) {
         // Define the API endpoint
         int limit = 50000;
         int offset = 0;
-
+        int totalsize = 0;
         // Create the HttpClient
         HttpClient client = HttpClient.newHttpClient();
 
@@ -33,7 +28,7 @@ public class URLClass {
             int size = limit;
             while (size == limit) {
                 offset += limit;
-                String modifiedUrl = this.url + "?$limit=" + limit + "&$offset=" + offset;
+                String modifiedUrl = url + "?$limit=" + limit + "&$offset=" + offset;
 
                 // Build the HTTP GET request
                 HttpRequest request = HttpRequest.newBuilder()
@@ -56,7 +51,8 @@ public class URLClass {
                         allEntries.add(jsonArray.getJSONObject(i));
                     }
                     size = jsonArray.length();
-                    System.out.println("Total Account Number: " + size);
+                    totalsize = totalsize + size;
+                    System.out.println("Total Account Number: " + totalsize);
 
 
                 } else {
