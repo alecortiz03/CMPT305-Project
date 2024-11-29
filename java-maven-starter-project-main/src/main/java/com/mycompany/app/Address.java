@@ -1,3 +1,5 @@
+package com.mycompany.app; // Package declaration
+
 public class Address {
     private String houseNum; // Private variable street to store street name
     private String street; // Private variable street to store street name
