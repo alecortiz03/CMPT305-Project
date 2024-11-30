@@ -1,3 +1,5 @@
+package com.mycompany.app; // Declaring the package name    
+
 import java.util.Objects; // Importing the Objects class for utility methods
 
 /**

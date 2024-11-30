@@ -1,3 +1,5 @@
+package com.mycompany.app;
+
 public class AssessmentClass {
     // Private member variables to store class name and percentage
     private String className;

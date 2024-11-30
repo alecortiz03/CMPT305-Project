@@ -1,3 +1,5 @@
+package com.mycompany.app;
+
 public class Neighborhood {
     private String neighborhood; // Neighborhood of the property
     private String ward; // Ward of the property
