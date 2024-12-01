@@ -66,6 +66,13 @@ public class App extends Application {
         // display the map by setting the map on the map view
         mapView.setMap(map);
         mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
+        Overlay.getData();
+        Overlay.addOverlay(map);
+
+
+
+
+
     }
 
     /**

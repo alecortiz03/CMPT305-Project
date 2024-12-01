@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="Working hopefully with Overlay class added">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/Overlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/Overlay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +54,9 @@
     &quot;accountId&quot;: &quot;296fbf43-9545-4064-951f-e05560300262&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -62,6 +67,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.App.executor": "Run",
     "Application.Overlay.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.app [compile].executor": "Run",
@@ -104,7 +110,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732901183109</updated>
-      <workItem from="1732901184185" duration="1450000" />
+      <workItem from="1732901184185" duration="2362000" />
+      <workItem from="1733026628841" duration="6508000" />
     </task>
     <task id="LOCAL-00001" summary="Working hopefully with Overlay class added">
       <option name="closed" value="true" />
@@ -122,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732902586791</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Working hopefully with Overlay class added">
+      <option name="closed" value="true" />
+      <created>1732902645129</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732902645129</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
