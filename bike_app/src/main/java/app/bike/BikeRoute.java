@@ -4,16 +4,16 @@ public class BikeRoute {
     private int id;
     private String type;
     private String classification;
-    private int durattion;
+    private int duration;
     private LocationRoutes routeList; // List of coordinates representing the route
     
 
 
-    public BikeRoute(int id, String type, String classification, int durattion, LocationRoutes routeList){
+    public BikeRoute(int id, String type, String classification, int duration, LocationRoutes routeList){
         this.id = id;
         this.type = type;
         this.classification = classification;
-        this.durattion = durattion;
+        this.duration = duration;
         this.routeList = routeList; // Initialize route list
         
     }
@@ -22,7 +22,7 @@ public class BikeRoute {
         this.id = 0;
         this.type = "";
         this.classification = "";
-        this.durattion = 0;
+        this.duration = 0;
         this.routeList = new LocationRoutes(); // Initialize route list
     }
     public int getId(){
@@ -35,11 +35,13 @@ public class BikeRoute {
         return this.classification;
     }
     public int getDuration(){
-        return this.durattion;
+        return this.duration;
     }
     public LocationRoutes getRouteList(){
         return this.routeList;
     }
-    
+    public String toString(){
+        return "ID: " + this.id + " Type: " + this.type + " Classification: " + this.classification + " Duration: " + this.duration + " Route: " + this.routeList;
+    }
 
 }

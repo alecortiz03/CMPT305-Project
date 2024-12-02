@@ -12,11 +12,30 @@ public class LocationRoutes {
         this.routes = new ArrayList<>();
     }
 
-    public void getLocations(int index) {
-        this.routes.get(index);
+    public Location getLocations(int index) {
+        return this.routes.get(index);
     }
     public void addLocation(Location location) {
         this.routes.add(location);
+        }
+
+    @Override
+    public String toString() {
+    StringBuilder result = new StringBuilder();
+    int indexCheck = 0;
+    for (Location location : this.routes) {
+        if (location != null) {
+            if (indexCheck + 1 == this.routes.size()) {
+                result.append(location.toString());
+            }
+            else{
+        result.append(location.toString()).append(" | ");
+            }
+            indexCheck++;
+        }
+        
     }
+    return result.toString();
+}
     
 }
