@@ -21,6 +21,8 @@ import com.esri.arcgisruntime.mapping.BasemapStyle;
 import com.esri.arcgisruntime.mapping.ArcGISMap;
 import com.esri.arcgisruntime.mapping.view.MapView;
 import com.esri.arcgisruntime.mapping.Viewpoint;
+import com.esri.arcgisruntime.portal.Portal;
+import com.esri.arcgisruntime.portal.PortalItem;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -53,7 +55,7 @@ public class App extends Application {
         // An API key is required to enable access to services, web maps, and web scenes hosted in ArcGIS Online.
         // If you haven't already, go to your developer dashboard to get your API key.
         // Please refer to https://developers.arcgis.com/java/get-started/ for more information
-        String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGlnDZ4ufU_qKFPagMXaJlIei9YH6M3I2VRE86ICIpw-zAOFnJAzYLHH0Mk85D0ldnDqT4y2CeD_oLna8Bgzkoo4zh3hFDmAC0GXvr1bLSCr6GVwBmXTFJF8j9FraOa3XuL_4W7u-t4KYMmowTY0dSKLy-kCdGK3yZapK_ziJhBFZMSrTeZIJVwh12vaaBu2gBo.AT1_j7NkVs9t";
+        String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGm-0_3kgitapKiaBZcHKNzSc6JL7ygonCJarQ9k_h9iChOyrYBYJt3CfVtq6arA_yOpj50CV_lPCVK3CIIPg2tavV0bQmPfjiX-id7z8u0iKGe_eNhjOJ1tecH205U27oe90Vv9ZuIAdEjHgefWoJrjb6uK5HbqusyG-7bjQCIJkIMcDGNmE7yIQctLn_AZHgffg2wqf0jF2u20vMRi7--KAT1_MCnmWKIq";
         ArcGISRuntimeEnvironment.setApiKey(yourApiKey);
 
         // create a MapView to display the map and add it to the stack pane
@@ -61,11 +63,22 @@ public class App extends Application {
         stackPane.getChildren().add(mapView);
 
         // create an ArcGISMap with an imagery basemap
-        ArcGISMap map = new ArcGISMap(BasemapStyle.ARCGIS_IMAGERY);
+        Portal portal = new Portal("https://www.arcgis.com", false);
+
+        String itemId = "1ae528f03a75414fa574287f52e306c0";
+        PortalItem portalItem = new PortalItem(portal, itemId);
+
+        ArcGISMap map = new ArcGISMap(portalItem);
 
         // display the map by setting the map on the map view
         mapView.setMap(map);
         mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
+
+
+
+
+
+
     }
 
     /**

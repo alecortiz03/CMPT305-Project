@@ -1,4 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{}</component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="Overlay class makes a layer from heighbourhood data.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/Overlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/Overlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ArikkaC&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/alecortiz03/CMPT305-Project.git&quot;,
+    &quot;accountId&quot;: &quot;296fbf43-9545-4064-951f-e05560300262&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2pX8hxHMp1icnaCF7BcwOXvHj7M" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.Overlay.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.app [compile].executor": "Run",
+    "Maven.app [install].executor": "Run",
+    "Maven.app [org.apache.maven.plugins:maven-dependency-plugin:3.1.1:unpack].executor": "Run",
+    "Maven.app [org.codehaus.mojo:exec-maven-plugin:1.6.0:java].executor": "Run",
+    "Maven.untitled [compile].executor": "Run",
+    "Maven.untitled [exec,java].executor": "Run",
+    "Maven.untitled [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Arikka2",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn exec java" />
+    </option>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="" />
+      <created>1732901183109</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732901183109</updated>
+      <workItem from="1732901184185" duration="2362000" />
+      <workItem from="1733026628841" duration="10091000" />
+    </task>
+    <task id="LOCAL-00001" summary="Working hopefully with Overlay class added">
+      <option name="closed" value="true" />
+      <created>1732902562183</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732902562184</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Working hopefully with Overlay class added">
+      <option name="closed" value="true" />
+      <created>1732902586791</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732902586791</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Working hopefully with Overlay class added">
+      <option name="closed" value="true" />
+      <created>1732902645129</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732902645129</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Overlay class makes a layer from heighbourhood data.">
+      <option name="closed" value="true" />
+      <created>1733093476545</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733093476545</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Working hopefully with Overlay class added" />
+    <MESSAGE value="Overlay class makes a layer from heighbourhood data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Overlay class makes a layer from heighbourhood data." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
 </project>
