@@ -31,10 +31,10 @@ public class Overlay {
 
 
     }
-    public static void addOverlay(ArcGISMap map) {
+    public static ArcGISMap addOverlay(ArcGISMap map) {
         FeatureCollectionLayer layer = new FeatureCollectionLayer(data);
         map.getOperationalLayers().add(layer);
-        System.out.println(map.toString());
+        return(map);
 
 
     }
