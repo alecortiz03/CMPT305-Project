@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="Overlay class makes a layer from heighbourhood data.">
+    <list default="true" id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="Working overlay on map!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/Overlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/Overlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732901183109</updated>
       <workItem from="1732901184185" duration="2362000" />
-      <workItem from="1733026628841" duration="10091000" />
+      <workItem from="1733026628841" duration="11753000" />
     </task>
     <task id="LOCAL-00001" summary="Working hopefully with Overlay class added">
       <option name="closed" value="true" />
@@ -146,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733093476545</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Working overlay on map!">
+      <option name="closed" value="true" />
+      <created>1733154778900</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733154778900</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +172,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working hopefully with Overlay class added" />
     <MESSAGE value="Overlay class makes a layer from heighbourhood data." />
-    <option name="LAST_COMMIT_MESSAGE" value="Overlay class makes a layer from heighbourhood data." />
+    <MESSAGE value="Working overlay on map!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working overlay on map!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
