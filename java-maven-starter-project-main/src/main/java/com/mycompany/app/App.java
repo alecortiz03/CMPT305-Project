@@ -65,11 +65,11 @@
          // Create two maps with different basemaps or content
          Portal portal = new Portal("https://www.arcgis.com", false);
  
-         String itemId1 = "f29c5e70b9d14febb35748dada45f312";
+         String itemId1 = "4a120250e5b04daeb0a899762";
          PortalItem portalItem1 = new PortalItem(portal, itemId1);
          map1 = new ArcGISMap(portalItem1);
  
-         String itemId2 = "4a120250e5b04daeb0a899762"; // Replace with your second map's itemId
+         String itemId2 = "f29c5e70b9d14febb35748dada45f312"; // Replace with your second map's itemId
          PortalItem portalItem2 = new PortalItem(portal, itemId2);
          map2 = new ArcGISMap(portalItem2);
  
