@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -22,7 +23,7 @@ public class BikeURLClass {
     }
 
 
-    private List<String> URLParse() {
+    public List<String> URLParse() {
         List<String> allEntries = new ArrayList<>();
         try {
             // Create URL and connection
