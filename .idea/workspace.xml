@@ -7,6 +7,24 @@
     <list default="true" id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="Working overlay on map! Added Bike routes layer!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/app-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/Address.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/Address.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/AssessmentClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/AssessmentClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/AssessmentClasses.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/AssessmentClasses.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/BikeRoute.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/BikeRoute.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/BikeRoutesCSV.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/BikeRoutesCSV.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/CustomException.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/CustomException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/Neighborhood.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/Neighborhood.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/Overlay.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/Overlay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/PropertyAssessment.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/PropertyAssessment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/PropertyAssessments.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/PropertyAssessments.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/dependency-maven-plugin-markers/com.esri.arcgisruntime-arcgis-java-jnilibs-zip-200.5.0.marker" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/dependency-maven-plugin-markers/com.esri.arcgisruntime-arcgis-java-resources-zip-200.5.0.marker" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +54,7 @@
     </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Arikka2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,6 +87,7 @@
     "Application.App.executor": "Run",
     "Application.Overlay.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.app [clean].executor": "Run",
     "Maven.app [compile].executor": "Run",
     "Maven.app [install].executor": "Run",
     "Maven.app [org.apache.maven.plugins:maven-dependency-plugin:3.1.1:unpack].executor": "Run",
@@ -77,7 +96,7 @@
     "Maven.untitled [exec,java].executor": "Run",
     "Maven.untitled [install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Arikka2",
+    "git-widget-placeholder": "Alec",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

@@ -68,7 +68,7 @@
          // Create two maps with different basemaps or content
          Portal portal = new Portal("https://www.arcgis.com", false);
  
-         String itemId1 = "4a120250e5b04daeb0a899762";
+         String itemId1 = "4a120250e5b04daeb0a899762988f568";
          PortalItem portalItem1 = new PortalItem(portal, itemId1);
          map1 = new ArcGISMap(portalItem1);
  
@@ -95,12 +95,11 @@
      private void toggleMap() {
         if (showingMap1) {
             // Set map2 and adjust its viewpoint after it's loaded
-            mapView.setMap(map2);
+            mapView.setMap(map1);
             map2.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
         } else {
             // Set map1 and adjust its viewpoint after it's loaded
-            mapView2.setMap(map2);
-            borderPane.setCenter(mapView2);
+            mapView.setMap(map2);
             map1.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
         }
         showingMap1 = !showingMap1; // Toggle the flag
