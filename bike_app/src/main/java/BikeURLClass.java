@@ -1,6 +1,3 @@
-package app.bike;
-
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -10,14 +7,19 @@ import java.util.List;
 
 public class BikeURLClass {
     String url;
-    List<String> urlInformation;
+
+
+
+    private List<String> urlInformation;
 
     public BikeURLClass(String url) {
         this.url = url;
         urlInformation = URLParse();
     }
 
-
+    public List<String> getUrlInformation() {
+        return urlInformation;
+    }
 
 
     private List<String> URLParse() {
@@ -47,7 +49,11 @@ public class BikeURLClass {
     public String toString() {
         return urlInformation.toString();
     }
+
 }
+
+
+
 //    public void splitLines(List<String> rackURL) {
 //        List<String> allRacksUnsplit = URLParse();
 //        List<BikeRack> allRacks = new ArrayList<>();
