@@ -25,16 +25,31 @@
  import com.esri.arcgisruntime.portal.PortalItem;
  
  import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
  import javafx.scene.Scene;
- import javafx.scene.control.Button;
- import javafx.scene.layout.BorderPane;
- import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+
+
  
  public class App extends Application {
  
      private MapView mapView;
      private ArcGISMap map1;
      private ArcGISMap map2;
+     private Label response;
      private boolean showingMap1 = true; // Flag to track the current map
  
      public static void main(String[] args) {
@@ -77,15 +92,94 @@
          mapView.setMap(map1);
          mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
  
-         // Create the toggle button
-         Button toggleButton = new Button("Switch Map");
-         toggleButton.setOnAction(event -> toggleMap());
+         
+         
  
-         // Add the toggle button to the top of the BorderPane
-         borderPane.setTop(toggleButton);
+         
  
-         // Add the MapView to the center of the BorderPane
-         borderPane.setCenter(mapView);
+         borderPane.setLeft(mapView);
+
+        // ------------------- City Name Label -------------------
+        Label cityName = new Label("Map of the City of Edmonton");
+        cityName.setStyle("-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #4A90E2;");
+
+        // ------------------- Address Bar -------------------
+        TextField addressField = new TextField();
+        addressField.setPromptText("Enter address or search term");
+        addressField.setPrefWidth(400);
+
+        // ------------------- Response Label -------------------
+        response = new Label("Push a button");
+        response.setStyle("-fx-font-size: 14px; -fx-text-fill: blue;");
+
+
+
+        // Create the Toggle button
+        Button toggleButton = new Button("Toggle");
+        toggleButton.setOnAction(event -> toggleMap());
+
+        // Create the Search button
+        Button searchButton = new Button("Search");
+        searchButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String enteredText = addressField.getText();
+                response.setText("You searched for: " + enteredText);
+            }
+        });
+
+        // ------------------- Statistics -------------------
+        TableView<PropertyAssessment> tableView = new TableView<>();
+
+        //Create columns for the table
+        TableColumn<PropertyAssessment,String> nameCol = new TableColumn<>();
+        TableColumn<PropertyAssessment,String> valueCol = new TableColumn<>();
+
+
+
+
+        // Add the rows or columns to the TableView
+        tableView.getColumns().addAll(nameCol, valueCol);
+
+
+        // Set the data for the TableView
+        //tableView.setItems();
+        /*
+        Label housePrices = new Label("House Prices");
+        housePrices.setStyle("-fx-font-size: 14px;");
+
+        Label mean = new Label("Mean: ");
+        Label median = new Label("Median: ");
+        Label max = new Label("Max: ");
+        Label min = new Label("Min: ");
+        Label range = new Label("Range: ");
+
+
+         */
+
+        //VBox statistics = new VBox(10);
+        //statistics.setAlignment(Pos.CENTER);
+        //statistics.getChildren().addAll(housePrices, mean, median, max, min, range);
+
+        // ------------------- Right Panel -------------------
+        VBox rightPanel = new VBox(10);
+        rightPanel.setPadding(new Insets(10));
+        rightPanel.setAlignment(Pos.TOP_LEFT);
+        rightPanel.getChildren().addAll(tableView, response);
+
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, javafx.scene.layout.Priority.ALWAYS);
+
+        // Create the HBox for buttons and place it at the top of the BorderPane
+        HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.CENTER_LEFT);
+        hbox.getChildren().addAll(toggleButton, cityName, spacer, addressField, searchButton);
+
+        // Add the HBox (buttons) at the top of the BorderPane
+        borderPane.setTop(hbox);
+
+        // Add right panel to the center of the BorderPane
+        borderPane.setCenter(rightPanel); // Right section for the UI elements
      }
  
      // Toggle the map displayed in the MapView
