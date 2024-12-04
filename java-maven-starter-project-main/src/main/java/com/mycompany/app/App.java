@@ -55,7 +55,7 @@ public class App extends Application {
         // An API key is required to enable access to services, web maps, and web scenes hosted in ArcGIS Online.
         // If you haven't already, go to your developer dashboard to get your API key.
         // Please refer to https://developers.arcgis.com/java/get-started/ for more information
-        String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGm-0_3kgitapKiaBZcHKNzSc6JL7ygonCJarQ9k_h9iChOyrYBYJt3CfVtq6arA_yOpj50CV_lPCVK3CIIPg2tavV0bQmPfjiX-id7z8u0iKGe_eNhjOJ1tecH205U27oe90Vv9ZuIAdEjHgefWoJrjb6uK5HbqusyG-7bjQCIJkIMcDGNmE7yIQctLn_AZHgffg2wqf0jF2u20vMRi7--KAT1_MCnmWKIq";
+        String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGnXlzPvOPgHLRsclEzGqk8WBrVOg_QU19RdNG4GJANQlmM6aMbNx43fPtHnKW87m8GgJQagx7OnyaR2FhL5Joqrg_-HrjYG7SX2DVED3ACtqUpz1m5aIEm7p-sjY_SvugJ2k7UuYod-VGP54X1Pnt5yHT3ZwIyRp1Fa8IDNwdKhH79_Iggz1sVWj3f7qZQuyeOHk4p2Dj9Rc2APgpW-WWWIAT1_MCnmWKIq";
         ArcGISRuntimeEnvironment.setApiKey(yourApiKey);
 
         // create a MapView to display the map and add it to the stack pane
