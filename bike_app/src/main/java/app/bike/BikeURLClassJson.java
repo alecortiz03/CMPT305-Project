@@ -1,16 +1,16 @@
 package app.bike;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
-public class URLClass {
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class BikeURLClassJson {
     private final String url;
-    public URLClass(String urlLink) {
+    public BikeURLClassJson(String urlLink) {
         this.url = urlLink;
     }
 
