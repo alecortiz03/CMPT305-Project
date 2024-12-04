@@ -90,13 +90,17 @@
  
      // Toggle the map displayed in the MapView
      private void toggleMap() {
-         if (showingMap1) {
-             mapView.setMap(map2); // Switch to the second map
-         } else {
-             mapView.setMap(map1); // Switch back to the first map
-         }
-         showingMap1 = !showingMap1; // Toggle the flag
-     }
+        if (showingMap1) {
+            // Set map2 and adjust its viewpoint after it's loaded
+            mapView.setMap(map2);
+            map2.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
+        } else {
+            // Set map1 and adjust its viewpoint after it's loaded
+            mapView.setMap(map1);
+            map1.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
+        }
+        showingMap1 = !showingMap1; // Toggle the flag
+    }
  
      /**
       * Stops and releases all resources used in application.
