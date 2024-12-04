@@ -27,7 +27,7 @@
  import javafx.application.Application;
  import javafx.scene.Scene;
  import javafx.scene.control.Button;
- import javafx.scene.layout.VBox;
+ import javafx.scene.layout.BorderPane;
  import javafx.stage.Stage;
  
  public class App extends Application {
@@ -44,15 +44,15 @@
      @Override
      public void start(Stage stage) {
  
-         // set the title and size of the stage and show it
+         // Set the title and size of the stage and show it
          stage.setTitle("My Map App");
          stage.setWidth(800);
          stage.setHeight(700);
          stage.show();
  
-         // create a JavaFX scene with a stack pane as the root node and add it to the scene
-         VBox vbox = new VBox();
-         Scene scene = new Scene(vbox);
+         // Create a BorderPane as the root layout
+         BorderPane borderPane = new BorderPane();
+         Scene scene = new Scene(borderPane);
          stage.setScene(scene);
  
          // Note: it is not best practice to store API keys in source code.
@@ -77,12 +77,15 @@
          mapView.setMap(map1);
          mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
  
-         // Add a toggle button to switch between the maps
+         // Create the toggle button
          Button toggleButton = new Button("Switch Map");
          toggleButton.setOnAction(event -> toggleMap());
  
-         // Add the mapView and the toggle button to the layout
-         vbox.getChildren().addAll(toggleButton, mapView);
+         // Add the toggle button to the top of the BorderPane
+         borderPane.setTop(toggleButton);
+ 
+         // Add the MapView to the center of the BorderPane
+         borderPane.setCenter(mapView);
      }
  
      // Toggle the map displayed in the MapView
