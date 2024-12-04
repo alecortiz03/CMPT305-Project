@@ -33,8 +33,6 @@
  public class App extends Application {
  
      private MapView mapView;
-     private MapView mapView2;
-     BorderPane borderPane;
      private ArcGISMap map1;
      private ArcGISMap map2;
      private boolean showingMap1 = true; // Flag to track the current map
@@ -53,7 +51,7 @@
          stage.show();
  
          // Create a BorderPane as the root layout
-         borderPane = new BorderPane();
+         BorderPane borderPane = new BorderPane();
          Scene scene = new Scene(borderPane);
          stage.setScene(scene);
  
@@ -63,7 +61,6 @@
  
          // Create the MapView to display the maps
          mapView = new MapView();
-         mapView2 = new MapView();
  
          // Create two maps with different basemaps or content
          Portal portal = new Portal("https://www.arcgis.com", false);
@@ -99,8 +96,7 @@
             map2.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
         } else {
             // Set map1 and adjust its viewpoint after it's loaded
-            mapView2.setMap(map2);
-            borderPane.setCenter(mapView2);
+            mapView.setMap(map1);
             map1.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
         }
         showingMap1 = !showingMap1; // Toggle the flag
