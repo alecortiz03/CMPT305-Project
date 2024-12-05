@@ -10,18 +10,9 @@
 .custom-city-name-label {
   -fx-font-size: 26px;
   -fx-font-weight: bold;
-  -fx-text-fill: white;
+  -fx-text-fill: rgb(194, 188, 188);
 }
 .button {
   -fx-background-color: #8faeeb;
   -fx-text-fill: #eceff4;
-}
-/* Style for TableView column headers */
-.table-view .column-header-background {
-  -fx-background-color: #5e81ac;
-}
-.table-view .column-header .label {
-  -fx-text-fill: #eceff4;
-  -fx-font-weight: bold;
-  -fx-background-color: #5e81ac;
 }
