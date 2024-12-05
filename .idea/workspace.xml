@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="fixed map alignment and mapID.">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="toggle button toggles layers instead of a map">
       <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App.class" afterDir="false" />
@@ -174,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733411476955</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="toggle button toggles layers instead of a map">
+      <option name="closed" value="true" />
+      <created>1733429058194</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733429058194</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +201,8 @@
     <MESSAGE value="Working overlay on map!" />
     <MESSAGE value="Working overlay on map! Added Bike routes layer!" />
     <MESSAGE value="fixed map alignment and mapID." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed map alignment and mapID." />
+    <MESSAGE value="toggle button toggles layers instead of a map" />
+    <option name="LAST_COMMIT_MESSAGE" value="toggle button toggles layers instead of a map" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

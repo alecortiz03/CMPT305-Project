@@ -77,8 +77,8 @@ public class App extends Application {
         
          // Set the title and size of the stage and show it
          stage.setTitle("My Map App");
-         stage.setWidth(1280);
-         stage.setHeight(720);
+         stage.setWidth(1175);
+         stage.setHeight(800);
          stage.show();
  
          // Create a BorderPane as the root layout
