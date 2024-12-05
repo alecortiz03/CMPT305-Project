@@ -61,8 +61,8 @@ import javafx.stage.Stage;
  
          // Set the title and size of the stage and show it
          stage.setTitle("My Map App");
-         stage.setWidth(800);
-         stage.setHeight(700);
+         stage.setWidth(1024);
+         stage.setHeight(720);
          stage.show();
  
          // Create a BorderPane as the root layout
@@ -80,7 +80,7 @@ import javafx.stage.Stage;
          // Create two maps with different basemaps or content
          Portal portal = new Portal("https://www.arcgis.com", false);
  
-         String itemId1 = "4a120250e5b04daeb0a899762";
+         String itemId1 = "4a120250e5b04daeb0a899762988f568";
          PortalItem portalItem1 = new PortalItem(portal, itemId1);
          map1 = new ArcGISMap(portalItem1);
  
@@ -91,7 +91,7 @@ import javafx.stage.Stage;
          // Set the initial map to map1
          mapView.setMap(map1);
          mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
- 
+         mapView.setPrefWidth(600);
          
          
  
