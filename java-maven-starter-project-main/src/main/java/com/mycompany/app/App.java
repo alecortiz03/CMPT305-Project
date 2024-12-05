@@ -30,6 +30,7 @@
  import com.esri.arcgisruntime.portal.PortalItem;
  
  import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -46,18 +47,25 @@ import javafx.scene.input.MouseEvent;
  import javafx.scene.layout.*;
  import javafx.stage.Stage;
 
- import java.util.List;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+
+import org.json.JSONObject;
 
 
 public class App extends Application {
  
-     private MapView mapView;
-     private ArcGISMap map1;
-     private ArcGISMap map2;
-     private Label response;
-     private ToggleButton toggleButton;
+    private MapView mapView;
+    private ArcGISMap map1;
+    private ArcGISMap map2;
+    private Label response;
+    private ToggleButton toggleButton;
     private ToggleButton toggleButton2;
-     private boolean showingMap1 = true; // Flag to track the current map
+    private double latitude;
+    private double longitude;
  
      public static void main(String[] args) {
          Application.launch(args);
@@ -104,7 +112,8 @@ public class App extends Application {
 
          // Set the initial map to map1
          mapView.setMap(map1);
-         mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
+         //mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
+         getCurrentLocation();
          mapView.setPrefWidth(600);
 
          
@@ -213,6 +222,7 @@ public class App extends Application {
 
         // Add right panel to the center of the BorderPane
         borderPane.setCenter(rightPanel); // Right section for the UI elements
+        //getCurrentLocation();        
      }
 
 
@@ -222,6 +232,33 @@ public class App extends Application {
         } else {
             map1.getOperationalLayers().remove(layer);
         }
+    }
+    private void getCurrentLocation() {
+        new Thread(() -> {
+            try {
+                String url = "http://ip-api.com/json";
+                HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+                conn.setRequestMethod("GET");
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuilder content = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
+                }
+                in.close();
+                conn.disconnect();
+
+                JSONObject json = new JSONObject(content.toString());
+                latitude = json.getDouble("lat");
+                longitude = json.getDouble("lon");
+
+                Platform.runLater(() -> {
+                    mapView.setViewpoint(new Viewpoint(latitude, longitude, 50000));
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
     
 
