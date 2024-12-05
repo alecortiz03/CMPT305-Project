@@ -133,7 +133,7 @@ public class App extends Application {
 
         // ------------------- City Name Label -------------------
         Label cityName = new Label("Map of the City of Edmonton");
-        cityName.getStyleClass().add("city-name-label");
+        cityName.getStyleClass().add("custom-city-name-label");        
         // ------------------- Address Bar -------------------
         TextField addressField = new TextField();
         addressField.setPromptText("Enter address or search term");
