@@ -5,6 +5,7 @@
 .toggle-button {
   -fx-background-color: #8faeeb;
   -fx-text-fill: #eceff4;
+  -fx-font-weight: bold;
 }
 /* Specific style for the custom cityName label */
 .custom-city-name-label {
@@ -15,4 +16,5 @@
 .button {
   -fx-background-color: #8faeeb;
   -fx-text-fill: #eceff4;
+  -fx-font-weight: bold;
 }
