@@ -58,13 +58,14 @@ import org.json.JSONObject;
 
 public class App extends Application {
  
-     private MapView mapView;
-     private ArcGISMap map1;
-     private ArcGISMap map2;
-     private Label response;
-     private ToggleButton toggleButton;
+    private MapView mapView;
+    private ArcGISMap map1;
+    private ArcGISMap map2;
+    private Label response;
+    private ToggleButton toggleButton;
     private ToggleButton toggleButton2;
-     private boolean showingMap1 = true; // Flag to track the current map
+    private double latitude;
+    private double longitude;
  
      public static void main(String[] args) {
          Application.launch(args);
@@ -248,11 +249,11 @@ public class App extends Application {
                 conn.disconnect();
 
                 JSONObject json = new JSONObject(content.toString());
-                double latitude = json.getDouble("lat");
-                double longitude = json.getDouble("lon");
+                latitude = json.getDouble("lat");
+                longitude = json.getDouble("lon");
 
                 Platform.runLater(() -> {
-                    mapView.setViewpoint(new Viewpoint(latitude, longitude, 15000));
+                    mapView.setViewpoint(new Viewpoint(latitude, longitude, 100000));
                 });
             } catch (Exception e) {
                 e.printStackTrace();
