@@ -73,7 +73,8 @@ public class App extends Application {
  
      @Override
      public void start(Stage stage) {
- 
+        
+        
          // Set the title and size of the stage and show it
          stage.setTitle("My Map App");
          stage.setWidth(1024);
@@ -83,6 +84,8 @@ public class App extends Application {
          // Create a BorderPane as the root layout
          BorderPane borderPane = new BorderPane();
          Scene scene = new Scene(borderPane);
+         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
          stage.setScene(scene);
  
          // Note: it is not best practice to store API keys in source code.
