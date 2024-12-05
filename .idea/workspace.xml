@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="Working overlay on map! Added Bike routes layer!">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="aad27eb8-0f26-4ef4-a066-09836d3526e3" name="Changes" comment="toggle button toggles layers instead of a map">
       <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/src/main/java/com/mycompany/app/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/java-maven-starter-project-main/target/classes/com/mycompany/app/App.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,30 +65,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.Overlay.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.app [compile].executor": "Run",
-    "Maven.app [install].executor": "Run",
-    "Maven.app [org.apache.maven.plugins:maven-dependency-plugin:3.1.1:unpack].executor": "Run",
-    "Maven.app [org.codehaus.mojo:exec-maven-plugin:1.6.0:java].executor": "Run",
-    "Maven.untitled [compile].executor": "Run",
-    "Maven.untitled [exec,java].executor": "Run",
-    "Maven.untitled [install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Arikka2",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Overlay.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.app [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.app [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.app [org.apache.maven.plugins:maven-dependency-plugin:3.1.1:unpack].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.app [org.codehaus.mojo:exec-maven-plugin:1.6.0:java].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.untitled [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.untitled [exec,java].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.untitled [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Alec&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn exec java" />
@@ -160,7 +162,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733160057455</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed map alignment and mapID.">
+      <option name="closed" value="true" />
+      <created>1733411476955</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733411476955</updated>
+    </task>
+    <task id="LOCAL-00008" summary="toggle button toggles layers instead of a map">
+      <option name="closed" value="true" />
+      <created>1733429058194</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733429058194</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +200,9 @@
     <MESSAGE value="Overlay class makes a layer from heighbourhood data." />
     <MESSAGE value="Working overlay on map!" />
     <MESSAGE value="Working overlay on map! Added Bike routes layer!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working overlay on map! Added Bike routes layer!" />
+    <MESSAGE value="fixed map alignment and mapID." />
+    <MESSAGE value="toggle button toggles layers instead of a map" />
+    <option name="LAST_COMMIT_MESSAGE" value="toggle button toggles layers instead of a map" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
