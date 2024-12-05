@@ -12,3 +12,11 @@
   -fx-font-weight: bold;
   -fx-text-fill: white;
 }
+.button {
+  -fx-background-color: #8faeeb;
+  -fx-text-fill: #eceff4;
+}
+/* Style for TableView column headers */
+.table-view .column-header-background {
+  -fx-background-color: #5e81ac;
+}
