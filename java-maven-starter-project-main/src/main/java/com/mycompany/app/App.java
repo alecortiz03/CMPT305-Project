@@ -252,7 +252,7 @@ public class App extends Application {
                 double longitude = json.getDouble("lon");
 
                 Platform.runLater(() -> {
-                    mapView.setViewpoint(new Viewpoint(latitude, longitude, 10000));
+                    mapView.setViewpoint(new Viewpoint(latitude, longitude, 15000));
                 });
             } catch (Exception e) {
                 e.printStackTrace();
