@@ -41,7 +41,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
- import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.input.MouseEvent;
  import javafx.scene.layout.*;
  import javafx.stage.Stage;
 
@@ -54,6 +55,8 @@ public class App extends Application {
      private ArcGISMap map1;
      private ArcGISMap map2;
      private Label response;
+     private ToggleButton toggleButton;
+    private ToggleButton toggleButton2;
      private boolean showingMap1 = true; // Flag to track the current map
  
      public static void main(String[] args) {
@@ -132,11 +135,21 @@ public class App extends Application {
 
 
         // Create the Toggle button
-        Button toggleButton = new Button("Neighbourhood View");
-        toggleButton.setOnAction(event -> toggleMap(nLayer));
+        toggleButton = new ToggleButton("Neighbourhood View");
+        
 
-        Button toggleButton2 = new Button("Bike Route View");
-        toggleButton2.setOnAction(event -> toggleMap(bikeLayer));
+        toggleButton2 = new ToggleButton("Bike Route View");
+
+        toggleButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            toggleLayer(nLayer, newValue);
+        });
+
+        toggleButton2.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            toggleLayer(bikeLayer, newValue);
+        });
+        
+       
+    
 
         // Create the Search button
         Button searchButton = new Button("Search");
@@ -203,15 +216,12 @@ public class App extends Application {
      }
 
 
-     private void toggleMap(FeatureLayer layer) {
-        if (showingMap1) {
-            // Set map2 and adjust its viewpoint after it's loaded
+     private void toggleLayer(FeatureLayer layer, boolean addLayer) {
+        if (addLayer) {
             map1.getOperationalLayers().add(layer);
         } else {
-            // Set map1 and adjust its viewpoint after it's loaded
             map1.getOperationalLayers().remove(layer);
         }
-        showingMap1 = !showingMap1; // Toggle the flag
     }
     
 
