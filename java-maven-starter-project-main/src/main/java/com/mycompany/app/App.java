@@ -19,6 +19,7 @@
 
  import com.esri.arcgisruntime.ArcGISRuntimeEnvironment;
  import com.esri.arcgisruntime.concurrent.ListenableFuture;
+ import com.esri.arcgisruntime.layers.FeatureCollectionLayer;
  import com.esri.arcgisruntime.layers.FeatureLayer;
  import com.esri.arcgisruntime.mapping.ArcGISMap;
  import com.esri.arcgisruntime.mapping.GeoElement;
@@ -87,9 +88,13 @@ public class App extends Application {
          PortalItem portalItem1 = new PortalItem(portal, itemId1);
          map1 = new ArcGISMap(portalItem1);
 
-         String itemID3= "1fa7f000f33f406eadf4123b9f426325";
-         PortalItem portalItem3 = new PortalItem(portal, itemID3);
-         FeatureLayer layer = new FeatureLayer(portalItem3);
+         String itemId2= "1fa7f000f33f406eadf4123b9f426325";
+         PortalItem portalItem2 = new PortalItem(portal, itemId2);
+         FeatureLayer nLayer = new FeatureLayer(portalItem2);
+
+         String itemId3 = "8a2f8b857f1647ba8c1f95974dfde427";
+         PortalItem portalItem3 = new PortalItem(portal, itemId3);
+         FeatureLayer bikeLayer = new FeatureLayer(portalItem3);
 
 
 
@@ -127,8 +132,11 @@ public class App extends Application {
 
 
         // Create the Toggle button
-        Button toggleButton = new Button("Toggle");
-        toggleButton.setOnAction(event -> toggleMap(layer));
+        Button toggleButton = new Button("Neighbourhood View");
+        toggleButton.setOnAction(event -> toggleMap(nLayer));
+
+        Button toggleButton2 = new Button("Bike Route View");
+        toggleButton2.setOnAction(event -> toggleMap(bikeLayer));
 
         // Create the Search button
         Button searchButton = new Button("Search");
@@ -185,7 +193,7 @@ public class App extends Application {
         // Create the HBox for buttons and place it at the top of the BorderPane
         HBox hbox = new HBox(10);
         hbox.setAlignment(Pos.CENTER_LEFT);
-        hbox.getChildren().addAll(toggleButton, cityName, spacer, addressField, searchButton);
+        hbox.getChildren().addAll(toggleButton, toggleButton2, cityName, spacer, addressField, searchButton);
 
         // Add the HBox (buttons) at the top of the BorderPane
         borderPane.setTop(hbox);
