@@ -6,3 +6,9 @@
   -fx-background-color: #8faeeb;
   -fx-text-fill: #eceff4;
 }
+/* Specific style for the cityName label */
+.city-name-label {
+  -fx-font-size: 26px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #fafcff;
+}
