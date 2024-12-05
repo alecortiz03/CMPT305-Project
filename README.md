@@ -12,4 +12,9 @@ Purpose:
 The aim of this project is to empower people who want to bike or want bike resources to plan out where to live. 
 The current program gives bike routes, and property assessments in Edmonton. 
 
-Possible future implementations should add bike racks.
+Use the search bar and enter a neighbourhood to get the stats for that neighbourhood on the table.
+Alternatively, hover over the table in order to get the data to display on the table.
+
+Toggle buttons on the top left allows display of bike routes and neighbourhood overlay.
+
+The map can be scrolled and zoomed as required.
