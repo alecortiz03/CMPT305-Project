@@ -77,7 +77,7 @@ public class App extends Application {
         
          // Set the title and size of the stage and show it
          stage.setTitle("My Map App");
-         stage.setWidth(1024);
+         stage.setWidth(1280);
          stage.setHeight(720);
          stage.show();
  
@@ -117,7 +117,7 @@ public class App extends Application {
          mapView.setMap(map1);
          //mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
          getCurrentLocation();
-         mapView.setPrefWidth(600);
+         mapView.setPrefWidth(700);
 
          
          
