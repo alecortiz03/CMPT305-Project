@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Fix
+
  package com.mycompany.app;
 
  import com.esri.arcgisruntime.ArcGISRuntimeEnvironment;
