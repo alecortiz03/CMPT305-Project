@@ -73,16 +73,19 @@ public class App extends Application {
  
      @Override
      public void start(Stage stage) {
- 
+        
+        
          // Set the title and size of the stage and show it
          stage.setTitle("My Map App");
-         stage.setWidth(1024);
-         stage.setHeight(720);
+         stage.setWidth(1175);
+         stage.setHeight(800);
          stage.show();
  
          // Create a BorderPane as the root layout
          BorderPane borderPane = new BorderPane();
          Scene scene = new Scene(borderPane);
+         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
          stage.setScene(scene);
  
          // Note: it is not best practice to store API keys in source code.
@@ -114,7 +117,7 @@ public class App extends Application {
          mapView.setMap(map1);
          //mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
          getCurrentLocation();
-         mapView.setPrefWidth(600);
+         mapView.setPrefWidth(700);
 
          
          
@@ -130,8 +133,7 @@ public class App extends Application {
 
         // ------------------- City Name Label -------------------
         Label cityName = new Label("Map of the City of Edmonton");
-        cityName.setStyle("-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #4A90E2;");
-
+        cityName.getStyleClass().add("custom-city-name-label");        
         // ------------------- Address Bar -------------------
         TextField addressField = new TextField();
         addressField.setPromptText("Enter address or search term");
