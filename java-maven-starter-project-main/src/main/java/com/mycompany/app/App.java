@@ -111,7 +111,8 @@ public class App extends Application {
 
          // Set the initial map to map1
          mapView.setMap(map1);
-         mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
+         //mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
+         getCurrentLocation();
          mapView.setPrefWidth(600);
 
          
@@ -220,7 +221,7 @@ public class App extends Application {
 
         // Add right panel to the center of the BorderPane
         borderPane.setCenter(rightPanel); // Right section for the UI elements
-        getCurrentLocation();        
+        //getCurrentLocation();        
      }
 
 
