@@ -18,8 +18,13 @@
  package com.mycompany.app;
 
  import com.esri.arcgisruntime.ArcGISRuntimeEnvironment;
+ import com.esri.arcgisruntime.concurrent.ListenableFuture;
+ import com.esri.arcgisruntime.layers.FeatureCollectionLayer;
+ import com.esri.arcgisruntime.layers.FeatureLayer;
  import com.esri.arcgisruntime.mapping.ArcGISMap;
+ import com.esri.arcgisruntime.mapping.GeoElement;
  import com.esri.arcgisruntime.mapping.Viewpoint;
+ import com.esri.arcgisruntime.mapping.view.IdentifyLayerResult;
  import com.esri.arcgisruntime.mapping.view.MapView;
  import com.esri.arcgisruntime.portal.Portal;
  import com.esri.arcgisruntime.portal.PortalItem;
@@ -28,23 +33,22 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+ import javafx.geometry.Point2D;
+ import javafx.geometry.Pos;
  import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+ import javafx.scene.input.MouseEvent;
+ import javafx.scene.layout.*;
+ import javafx.stage.Stage;
+
+ import java.util.List;
 
 
-
- 
- public class App extends Application {
+public class App extends Application {
  
      private MapView mapView;
      private ArcGISMap map1;
@@ -71,7 +75,7 @@ import javafx.stage.Stage;
          stage.setScene(scene);
  
          // Note: it is not best practice to store API keys in source code.
-         String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGmPNCNzdSFiVgLBvMIxAEco6KZVumKu7MdEw0hAqD_kE9dyGobK-enlgLuMR17SjMAJlvFEtVB_JAblbOQKOCv3sOPycS1WlG4_EuGd_cUI0X5mtknkjPxps_iv6rPBIJB74VWxNMjZt91JBLBR9DCB44ZAKIUI9gguPeEJC4Sfqs0BYXk9v9SST9JVjC9ZXbT7i6LgOz00qlaHrH13YfavAT1_MCnmWKIq";
+         String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGmU_I7A-_kGUQSnF7Q-oQyQRV-g4hD99UbwxWZmJdnlTR5H7BS9-dhS2ZV7l8VmblhYq1WMiweHSHAcQp-2GvfoJf_UySN5EQv_59SCJt-JQiWJgxQ9yMcLm0LMnP8DhaEhvQvXEZXql3fn5fQw7rBWJ2s7NhSJ1VTTROOO-o0B9I1jwtlzYyR1cY5y75eXu_3YZmVLr_WE828LszzoRIuvAT1_MCnmWKIq";
          ArcGISRuntimeEnvironment.setApiKey(yourApiKey);
  
          // Create the MapView to display the maps
@@ -80,24 +84,37 @@ import javafx.stage.Stage;
          // Create two maps with different basemaps or content
          Portal portal = new Portal("https://www.arcgis.com", false);
  
-         String itemId1 = "4a120250e5b04daeb0a899762988f568";
+         String itemId1 = "1ae528f03a75414fa574287f52e306c0";
          PortalItem portalItem1 = new PortalItem(portal, itemId1);
          map1 = new ArcGISMap(portalItem1);
- 
-         String itemId2 = "f29c5e70b9d14febb35748dada45f312"; // Replace with your second map's itemId
+
+         String itemId2= "1fa7f000f33f406eadf4123b9f426325";
          PortalItem portalItem2 = new PortalItem(portal, itemId2);
-         map2 = new ArcGISMap(portalItem2);
- 
+         FeatureLayer nLayer = new FeatureLayer(portalItem2);
+
+         String itemId3 = "8a2f8b857f1647ba8c1f95974dfde427";
+         PortalItem portalItem3 = new PortalItem(portal, itemId3);
+         FeatureLayer bikeLayer = new FeatureLayer(portalItem3);
+
+
+
+
          // Set the initial map to map1
          mapView.setMap(map1);
          mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
          mapView.setPrefWidth(600);
+
          
          
  
          
  
          borderPane.setLeft(mapView);
+
+
+
+
+
 
         // ------------------- City Name Label -------------------
         Label cityName = new Label("Map of the City of Edmonton");
@@ -115,8 +132,11 @@ import javafx.stage.Stage;
 
 
         // Create the Toggle button
-        Button toggleButton = new Button("Toggle");
-        toggleButton.setOnAction(event -> toggleMap());
+        Button toggleButton = new Button("Neighbourhood View");
+        toggleButton.setOnAction(event -> toggleMap(nLayer));
+
+        Button toggleButton2 = new Button("Bike Route View");
+        toggleButton2.setOnAction(event -> toggleMap(bikeLayer));
 
         // Create the Search button
         Button searchButton = new Button("Search");
@@ -168,12 +188,12 @@ import javafx.stage.Stage;
         rightPanel.getChildren().addAll(tableView, response);
 
         Region spacer = new Region();
-        HBox.setHgrow(spacer, javafx.scene.layout.Priority.ALWAYS);
+        HBox.setHgrow(spacer, Priority.ALWAYS);
 
         // Create the HBox for buttons and place it at the top of the BorderPane
         HBox hbox = new HBox(10);
         hbox.setAlignment(Pos.CENTER_LEFT);
-        hbox.getChildren().addAll(toggleButton, cityName, spacer, addressField, searchButton);
+        hbox.getChildren().addAll(toggleButton, toggleButton2, cityName, spacer, addressField, searchButton);
 
         // Add the HBox (buttons) at the top of the BorderPane
         borderPane.setTop(hbox);
@@ -181,20 +201,25 @@ import javafx.stage.Stage;
         // Add right panel to the center of the BorderPane
         borderPane.setCenter(rightPanel); // Right section for the UI elements
      }
- 
-     // Toggle the map displayed in the MapView
-     private void toggleMap() {
+
+
+    // Toggle the map displayed in the MapView
+     private void toggleMap(FeatureLayer layer) {
         if (showingMap1) {
             // Set map2 and adjust its viewpoint after it's loaded
-            mapView.setMap(map2);
-            map2.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
+            map1.getOperationalLayers().add(layer);
         } else {
             // Set map1 and adjust its viewpoint after it's loaded
-            mapView.setMap(map1);
-            map1.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
+            map1.getOperationalLayers().remove(layer);
         }
         showingMap1 = !showingMap1; // Toggle the flag
     }
+
+
+
+
+
+
  
      /**
       * Stops and releases all resources used in application.
