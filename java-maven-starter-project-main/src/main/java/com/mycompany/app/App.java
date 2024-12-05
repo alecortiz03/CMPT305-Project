@@ -30,6 +30,7 @@
  import com.esri.arcgisruntime.portal.PortalItem;
  
  import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -46,7 +47,13 @@ import javafx.scene.input.MouseEvent;
  import javafx.scene.layout.*;
  import javafx.stage.Stage;
 
- import java.util.List;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+
+import org.json.JSONObject;
 
 
 public class App extends Application {
@@ -213,6 +220,7 @@ public class App extends Application {
 
         // Add right panel to the center of the BorderPane
         borderPane.setCenter(rightPanel); // Right section for the UI elements
+        getCurrentLocation();        
      }
 
 
@@ -222,6 +230,33 @@ public class App extends Application {
         } else {
             map1.getOperationalLayers().remove(layer);
         }
+    }
+    private void getCurrentLocation() {
+        new Thread(() -> {
+            try {
+                String url = "http://ip-api.com/json";
+                HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+                conn.setRequestMethod("GET");
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuilder content = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
+                }
+                in.close();
+                conn.disconnect();
+
+                JSONObject json = new JSONObject(content.toString());
+                double latitude = json.getDouble("lat");
+                double longitude = json.getDouble("lon");
+
+                Platform.runLater(() -> {
+                    mapView.setViewpoint(new Viewpoint(latitude, longitude, 240000));
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
     
 
