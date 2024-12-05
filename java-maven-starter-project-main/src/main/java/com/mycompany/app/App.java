@@ -18,25 +18,45 @@
  package com.mycompany.app;
 
  import com.esri.arcgisruntime.ArcGISRuntimeEnvironment;
+ import com.esri.arcgisruntime.concurrent.ListenableFuture;
+ import com.esri.arcgisruntime.layers.FeatureCollectionLayer;
+ import com.esri.arcgisruntime.layers.FeatureLayer;
  import com.esri.arcgisruntime.mapping.ArcGISMap;
+ import com.esri.arcgisruntime.mapping.GeoElement;
  import com.esri.arcgisruntime.mapping.Viewpoint;
+ import com.esri.arcgisruntime.mapping.view.IdentifyLayerResult;
  import com.esri.arcgisruntime.mapping.view.MapView;
  import com.esri.arcgisruntime.portal.Portal;
  import com.esri.arcgisruntime.portal.PortalItem;
  
  import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+ import javafx.geometry.Point2D;
+ import javafx.geometry.Pos;
  import javafx.scene.Scene;
- import javafx.scene.control.Button;
- import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.input.MouseEvent;
+ import javafx.scene.layout.*;
  import javafx.stage.Stage;
- 
- public class App extends Application {
+
+ import java.util.List;
+
+
+public class App extends Application {
  
      private MapView mapView;
-     private MapView mapView2;
-     BorderPane borderPane;
      private ArcGISMap map1;
      private ArcGISMap map2;
+     private Label response;
+     private ToggleButton toggleButton;
+    private ToggleButton toggleButton2;
      private boolean showingMap1 = true; // Flag to track the current map
  
      public static void main(String[] args) {
@@ -48,62 +68,168 @@
  
          // Set the title and size of the stage and show it
          stage.setTitle("My Map App");
-         stage.setWidth(800);
-         stage.setHeight(700);
+         stage.setWidth(1024);
+         stage.setHeight(720);
          stage.show();
  
          // Create a BorderPane as the root layout
-         borderPane = new BorderPane();
+         BorderPane borderPane = new BorderPane();
          Scene scene = new Scene(borderPane);
          stage.setScene(scene);
  
          // Note: it is not best practice to store API keys in source code.
-         String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGmPNCNzdSFiVgLBvMIxAEco6KZVumKu7MdEw0hAqD_kE9dyGobK-enlgLuMR17SjMAJlvFEtVB_JAblbOQKOCv3sOPycS1WlG4_EuGd_cUI0X5mtknkjPxps_iv6rPBIJB74VWxNMjZt91JBLBR9DCB44ZAKIUI9gguPeEJC4Sfqs0BYXk9v9SST9JVjC9ZXbT7i6LgOz00qlaHrH13YfavAT1_MCnmWKIq";
+         String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGmU_I7A-_kGUQSnF7Q-oQyQRV-g4hD99UbwxWZmJdnlTR5H7BS9-dhS2ZV7l8VmblhYq1WMiweHSHAcQp-2GvfoJf_UySN5EQv_59SCJt-JQiWJgxQ9yMcLm0LMnP8DhaEhvQvXEZXql3fn5fQw7rBWJ2s7NhSJ1VTTROOO-o0B9I1jwtlzYyR1cY5y75eXu_3YZmVLr_WE828LszzoRIuvAT1_MCnmWKIq";
          ArcGISRuntimeEnvironment.setApiKey(yourApiKey);
  
          // Create the MapView to display the maps
          mapView = new MapView();
-         mapView2 = new MapView();
  
          // Create two maps with different basemaps or content
          Portal portal = new Portal("https://www.arcgis.com", false);
  
-         String itemId1 = "4a120250e5b04daeb0a899762988f568";
+         String itemId1 = "1ae528f03a75414fa574287f52e306c0";
          PortalItem portalItem1 = new PortalItem(portal, itemId1);
          map1 = new ArcGISMap(portalItem1);
- 
-         String itemId2 = "f29c5e70b9d14febb35748dada45f312"; // Replace with your second map's itemId
+
+         String itemId2= "1fa7f000f33f406eadf4123b9f426325";
          PortalItem portalItem2 = new PortalItem(portal, itemId2);
-         map2 = new ArcGISMap(portalItem2);
- 
+         FeatureLayer nLayer = new FeatureLayer(portalItem2);
+
+         String itemId3 = "8a2f8b857f1647ba8c1f95974dfde427";
+         PortalItem portalItem3 = new PortalItem(portal, itemId3);
+         FeatureLayer bikeLayer = new FeatureLayer(portalItem3);
+
+
+
+
          // Set the initial map to map1
          mapView.setMap(map1);
          mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
+         mapView.setPrefWidth(600);
+
+         
+         
  
-         // Create the toggle button
-         Button toggleButton = new Button("Switch Map");
-         toggleButton.setOnAction(event -> toggleMap());
+         
  
-         // Add the toggle button to the top of the BorderPane
-         borderPane.setTop(toggleButton);
- 
-         // Add the MapView to the center of the BorderPane
-         borderPane.setCenter(mapView);
+         borderPane.setLeft(mapView);
+
+
+
+
+
+
+        // ------------------- City Name Label -------------------
+        Label cityName = new Label("Map of the City of Edmonton");
+        cityName.setStyle("-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #4A90E2;");
+
+        // ------------------- Address Bar -------------------
+        TextField addressField = new TextField();
+        addressField.setPromptText("Enter address or search term");
+        addressField.setPrefWidth(400);
+
+        // ------------------- Response Label -------------------
+        response = new Label("Push a button");
+        response.setStyle("-fx-font-size: 14px; -fx-text-fill: blue;");
+
+
+
+        // Create the Toggle button
+        toggleButton = new ToggleButton("Neighbourhood View");
+        
+
+        toggleButton2 = new ToggleButton("Bike Route View");
+
+        toggleButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            toggleLayer(nLayer, newValue);
+        });
+
+        toggleButton2.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            toggleLayer(bikeLayer, newValue);
+        });
+        
+       
+    
+
+        // Create the Search button
+        Button searchButton = new Button("Search");
+        searchButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String enteredText = addressField.getText();
+                response.setText("You searched for: " + enteredText);
+            }
+        });
+
+        // ------------------- Statistics -------------------
+        TableView<PropertyAssessment> tableView = new TableView<>();
+
+        //Create columns for the table
+        TableColumn<PropertyAssessment,String> nameCol = new TableColumn<>();
+        TableColumn<PropertyAssessment,String> valueCol = new TableColumn<>();
+
+
+
+
+        // Add the rows or columns to the TableView
+        tableView.getColumns().addAll(nameCol, valueCol);
+
+
+        // Set the data for the TableView
+        //tableView.setItems();
+        /*
+        Label housePrices = new Label("House Prices");
+        housePrices.setStyle("-fx-font-size: 14px;");
+
+        Label mean = new Label("Mean: ");
+        Label median = new Label("Median: ");
+        Label max = new Label("Max: ");
+        Label min = new Label("Min: ");
+        Label range = new Label("Range: ");
+
+
+         */
+
+        //VBox statistics = new VBox(10);
+        //statistics.setAlignment(Pos.CENTER);
+        //statistics.getChildren().addAll(housePrices, mean, median, max, min, range);
+
+        // ------------------- Right Panel -------------------
+        VBox rightPanel = new VBox(10);
+        rightPanel.setPadding(new Insets(10));
+        rightPanel.setAlignment(Pos.TOP_LEFT);
+        rightPanel.getChildren().addAll(tableView, response);
+
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        // Create the HBox for buttons and place it at the top of the BorderPane
+        HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.CENTER_LEFT);
+        hbox.getChildren().addAll(toggleButton, toggleButton2, cityName, spacer, addressField, searchButton);
+
+        // Add the HBox (buttons) at the top of the BorderPane
+        borderPane.setTop(hbox);
+
+        // Add right panel to the center of the BorderPane
+        borderPane.setCenter(rightPanel); // Right section for the UI elements
      }
- 
-     // Toggle the map displayed in the MapView
-     private void toggleMap() {
-        if (showingMap1) {
-            // Set map2 and adjust its viewpoint after it's loaded
-            mapView.setMap(map1);
-            map2.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
+
+
+     private void toggleLayer(FeatureLayer layer, boolean addLayer) {
+        if (addLayer) {
+            map1.getOperationalLayers().add(layer);
         } else {
-            // Set map1 and adjust its viewpoint after it's loaded
-            mapView.setMap(map2);
-            map1.addDoneLoadingListener(() -> mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000)));
+            map1.getOperationalLayers().remove(layer);
         }
-        showingMap1 = !showingMap1; // Toggle the flag
     }
+    
+
+
+
+
+
+
  
      /**
       * Stops and releases all resources used in application.
