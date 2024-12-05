@@ -203,7 +203,6 @@ public class App extends Application {
      }
 
 
-    // Toggle the map displayed in the MapView
      private void toggleMap(FeatureLayer layer) {
         if (showingMap1) {
             // Set map2 and adjust its viewpoint after it's loaded
@@ -214,6 +213,7 @@ public class App extends Application {
         }
         showingMap1 = !showingMap1; // Toggle the flag
     }
+    
 
 
 
