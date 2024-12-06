@@ -6,11 +6,13 @@ import java.io.IOException;
 
 public class DataManager {
     private static DataManager instance; // Singleton instance
-    private BikeRoutes bikeRoutes; // Parsed bike routes
+    private BikeRoutes bikeRoutes;
+    private PropertyAssessments propertyAssessments;
 
-    // Private constructor to prevent direct instantiation
+    // Private constructor to initialize instances
     private DataManager() {
         this.bikeRoutes = new BikeRoutes();
+        this.propertyAssessments = new PropertyAssessments();
     }
 
     // Singleton access
@@ -21,40 +23,32 @@ public class DataManager {
         return instance;
     }
 
-    // Load bike routes from CSV (only once)
-    public void loadBikeRoutes(String filePath) {
+    // Load bike routes from API call
+    public void loadBikeRoutes(String bikeRackURL) {
         if (!bikeRoutes.getRoutes().isEmpty()) {
-            return; // Avoid reloading if data already loaded
+            return;
         }
-
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            br.readLine(); // Skip the header line
-
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                // Parse CSV values
-                int id = Integer.parseInt(values[0].trim());
-                String type = values[1].trim();
-                String classification = values[2].trim();
-                int duration = Integer.parseInt(values[3].trim());
-                LocationRoutes routeList = parseLocationRoutes(values[4].trim());
-
-                // Create BikeRoute and add to BikeRoutes
-                BikeRoute bikeRoute = new BikeRoute(id, type, classification, duration, routeList);
-                bikeRoutes.addRoute(bikeRoute);
-            }
-        } catch (IOException | NumberFormatException e) {
-            System.err.println("Error loading bike routes CSV: " + e.getMessage());
-        }
+        BuildBikeRouteData buildBikeRouteData = new BuildBikeRouteData();
+        this.bikeRoutes = buildBikeRouteData.BuildBikeRouteData(bikeRackURL);
     }
 
-    // Getter for BikeRoutes
+    // Load property assessments from CSV
+    public void loadPropertyAssessments(String filePath) {
+        if (propertyAssessments.getRecordAmt() > 0) {
+            return;
+        }
+
+        propertyAssessments = propertyAssessments.createAssessment(filePath); // Load data into property assessments
+    }
+
     public BikeRoutes getBikeRoutes() {
         return bikeRoutes;
     }
 
-    // Parse location routes from a string (example: "lat1,lon1;lat2,lon2;...")
+    public PropertyAssessments getPropertyAssessments() {
+        return propertyAssessments;
+    }
+
     private LocationRoutes parseLocationRoutes(String routeString) {
         LocationRoutes locationRoutes = new LocationRoutes();
         String[] points = routeString.split(";");
@@ -65,5 +59,22 @@ public class DataManager {
             locationRoutes.addLocation(new Location(latitude, longitude));
         }
         return locationRoutes;
+    }
+
+    // Generate table information for both data sets
+    public TableValues getTableInformation(String neighbourhoodName) {
+        // Bike routes stats
+        PropertyAssessments neighbourhood = this.propertyAssessments.searchNeighborhood(neighbourhoodName);
+        int bikeCount = bikeRoutes.getRoutes().size();
+
+        // Property assessments stats
+        int propertyCount = neighbourhood.getRecordAmt();
+        int meanValue = (int) neighbourhood.calcMean();
+        int medianValue = neighbourhood.calcMedian();
+        int minValue = neighbourhood.getMin();
+        int maxValue = neighbourhood.getMax();
+
+        // Return or print table information
+        return new TableValues(bikeCount, propertyCount, meanValue, medianValue, minValue, maxValue);
     }
 }
