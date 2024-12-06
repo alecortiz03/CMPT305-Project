@@ -3,6 +3,8 @@ package com.mycompany.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mycompany.app.property.Location; // Package declaration
+
 public class BikeRoute {
     private int id;
     private String type;

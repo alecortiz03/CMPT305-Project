@@ -28,8 +28,9 @@
  import com.esri.arcgisruntime.mapping.view.MapView;
  import com.esri.arcgisruntime.portal.Portal;
  import com.esri.arcgisruntime.portal.PortalItem;
- 
- import javafx.application.Application;
+import com.mycompany.app.property.*;
+
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

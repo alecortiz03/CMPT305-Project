@@ -9,6 +9,8 @@ import java.util.regex.Matcher; // Import the Scanner class to read text files
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.mycompany.app.property.Location; // Package declaration
+
 public class BikeRoutesCSV implements BikeRoutes{
     private List<BikeRoute> bikeRoutes = new ArrayList<>();
     
