@@ -136,7 +136,7 @@ public class AppController{
         }
 
         // get neighbourhood colours
-        Map<String, Color> colours = getNeighbourhoodColours(neighbourhoods);
+       // Map<String, Color> colours = getNeighbourhoodColours(neighbourhoods);
 
         // loop through each neighbourhood
         neighbourhoods.forEach((neighbourhood) -> {
