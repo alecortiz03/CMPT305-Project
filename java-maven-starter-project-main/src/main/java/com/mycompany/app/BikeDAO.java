@@ -9,7 +9,7 @@ public class BikeDAO {
     // Constructor
     public BikeDAO() {
         this.dataManager = DataManager.getInstance();
-        this.dataManager.loadPropertyAssessments("Property_Assessment_Data.csv");
+//        this.dataManager.loadPropertyAssessments("Property_Assessment_Data.csv");
         this.dataManager.loadBikeRoutes("https://data.edmonton.ca/resource/vd4b-a4iv.csv");
 
     }
