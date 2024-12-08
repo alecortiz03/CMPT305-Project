@@ -6,10 +6,20 @@ public class Main {
         BuildBikeRouteData buildBikeRouteData = new BuildBikeRouteData();
         BikeRoutes bikeRoutes = buildBikeRouteData.BuildBikeRouteData(bikeRackURL);
 //        System.out.println(bikeRoutes.getRoute(1));
+
+
         BikeDAO bikeDAO = new BikeDAO();
-        String neighbourhoodName = "cromdale";
-        System.out.println(bikeDAO.getTableValues(neighbourhoodName));
-    
+
+        ExampleObserver observer = new ExampleObserver();
+        bikeDAO.addObserver(observer);
+
+        // Fetch neighborhood table values, triggering notifications
+        TableValues tableValues = bikeDAO.getNeighbourTableValues("cromdale");
+        System.out.println(tableValues);
+
+        //If you want a different one
+        tableValues = bikeDAO.getNeighbourTableValues("lago lindo");
+        System.out.println(tableValues);
 
 }
 }

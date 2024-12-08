@@ -26,26 +26,41 @@ public class BikeURLClass {
 
     public List<String> URLParse() {
         List<String> allEntries = new ArrayList<>();
+        int offset = 1;
+        int limit = 10000; // The maximum is 50000
+        int entriesCount = 100000;
         try {
-            // Create URL and connection
-            URL url = new URL(this.url);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+            while (entriesCount < (limit)) {
+                // Create URL with pagination parameters
+                String paginatedUrl = this.url + "?$limit=" + limit + "&$offset=" + offset;
+                URL url = new URL(paginatedUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
 
-            // Read the response
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                allEntries.add(line);
+                // Read the response
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+
+
+
+                while ((line = reader.readLine()) != null) {
+                    allEntries.add(line);
+                }
+
+                reader.close();
+                connection.disconnect();
+                entriesCount = allEntries.size();
+
+
+                offset += limit;
             }
-
-            reader.close();
-            connection.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return allEntries;
     }
+
+
 
     @Override
     public String toString() {
