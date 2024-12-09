@@ -66,6 +66,7 @@ public class DataManager {
         // Bike routes stats
         PropertyAssessments neighbourhood = this.propertyAssessments.searchNeighborhood(neighbourhoodName);
         int bikeCount = bikeRoutes.getRoutes().size();
+        String neighborhood = neighbourhoodName;
 
         // Property assessments stats
         int propertyCount = neighbourhood.getRecordAmt();
@@ -75,6 +76,6 @@ public class DataManager {
         int maxValue = neighbourhood.getMax();
 
         // Return or print table information
-        return new TableValues(bikeCount, propertyCount, meanValue, medianValue, minValue, maxValue);
+        return new TableValues(neighborhood, bikeCount, propertyCount, meanValue, medianValue, minValue, maxValue);
     }
 }

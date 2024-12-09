@@ -31,19 +31,17 @@
  
  import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
+ import javafx.collections.FXCollections;
+ import javafx.collections.ObservableList;
+ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
  import javafx.geometry.Point2D;
  import javafx.geometry.Pos;
  import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.input.MouseEvent;
+ import javafx.scene.control.*;
+ import javafx.scene.control.cell.PropertyValueFactory;
+ import javafx.scene.input.MouseEvent;
  import javafx.scene.layout.*;
  import javafx.stage.Stage;
 
@@ -51,7 +49,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
+ import java.text.NumberFormat;
+ import java.util.List;
 
 import org.json.JSONObject;
 
@@ -66,6 +65,8 @@ public class App extends Application {
     private ToggleButton toggleButton2;
     private double latitude;
     private double longitude;
+    private TableView<TableValues> table; //have a TableView object containing a class think of this as a row in the table
+    private ObservableList<TableValues> values;
  
      public static void main(String[] args) {
          Application.launch(args);
@@ -76,11 +77,15 @@ public class App extends Application {
         
         
          // Set the title and size of the stage and show it
-         stage.setTitle("My Map App");
-         stage.setWidth(1175);
+         stage.setTitle("City of Edmonton Bike Routes");
+         stage.setWidth(1280);
          stage.setHeight(800);
          stage.show();
- 
+
+         //create the table
+         createTable();
+
+
          // Create a BorderPane as the root layout
          BorderPane borderPane = new BorderPane();
          Scene scene = new Scene(borderPane);
@@ -158,58 +163,39 @@ public class App extends Application {
         toggleButton2.selectedProperty().addListener((observable, oldValue, newValue) -> {
             toggleLayer(bikeLayer, newValue);
         });
-        
-       
-    
+
 
         // Create the Search button
         Button searchButton = new Button("Search");
         searchButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String enteredText = addressField.getText();
-                response.setText("You searched for: " + enteredText);
+                String enteredText = addressField.getText().toLowerCase();  // Get the search term from the TextField
+                response.setText("You searched for: " + enteredText);  // Display search text in response label
+
+                // Create a BikeDAO instance
+                BikeDAO bikeDAO = new BikeDAO();
+
+                // Use BikeDAO to get data for the entered neighbourhood
+                TableValues tableValues = bikeDAO.getTableValues(enteredText);
+
+                // Add the table values to the ObservableList (which populates the TableView)
+                //values.clear();  // Clear the existing rows
+                values.add(tableValues);  // Add new data based on the search
+
             }
         });
-
-        // ------------------- Statistics -------------------
-        TableView<PropertyAssessment> tableView = new TableView<>();
-
-        //Create columns for the table
-        TableColumn<PropertyAssessment,String> nameCol = new TableColumn<>();
-        TableColumn<PropertyAssessment,String> valueCol = new TableColumn<>();
-
-
-
-
-        // Add the rows or columns to the TableView
-        tableView.getColumns().addAll(nameCol, valueCol);
-
-
-        // Set the data for the TableView
-        //tableView.setItems();
-        /*
-        Label housePrices = new Label("House Prices");
-        housePrices.setStyle("-fx-font-size: 14px;");
-
-        Label mean = new Label("Mean: ");
-        Label median = new Label("Median: ");
-        Label max = new Label("Max: ");
-        Label min = new Label("Min: ");
-        Label range = new Label("Range: ");
-
-
-         */
-
-        //VBox statistics = new VBox(10);
-        //statistics.setAlignment(Pos.CENTER);
-        //statistics.getChildren().addAll(housePrices, mean, median, max, min, range);
 
         // ------------------- Right Panel -------------------
         VBox rightPanel = new VBox(10);
         rightPanel.setPadding(new Insets(10));
         rightPanel.setAlignment(Pos.TOP_LEFT);
-        rightPanel.getChildren().addAll(tableView, response);
+
+        rightPanel.setVgrow(table, Priority.ALWAYS);
+
+        rightPanel.getChildren().addAll(table);
+
+
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -226,6 +212,71 @@ public class App extends Application {
         borderPane.setCenter(rightPanel); // Right section for the UI elements
         //getCurrentLocation();        
      }
+
+
+    private void createTable() {
+        table = new TableView<>();
+        values = FXCollections.observableArrayList();
+        table.setItems(values);
+
+        // Create the Neighborhood column first
+        TableColumn<TableValues, String> neighborhoodCol = new TableColumn<>("Neighborhood");
+        neighborhoodCol.setCellValueFactory(new PropertyValueFactory<>("neighborhood"));
+        neighborhoodCol.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
+        table.getColumns().add(neighborhoodCol);
+
+        TableColumn<TableValues, String> bikeCountCol = new TableColumn<>("Bike Paths");
+        bikeCountCol.setCellValueFactory(new PropertyValueFactory<>("bikePaths"));
+        bikeCountCol.prefWidthProperty().bind(table.widthProperty().multiply(0.175));
+        table.getColumns().add(bikeCountCol);
+
+        TableColumn<TableValues, String> propertyCountCol = new TableColumn<>("Property Num");
+        propertyCountCol.setCellValueFactory(new PropertyValueFactory<>("propertyCount"));
+        propertyCountCol.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
+        table.getColumns().add(propertyCountCol);
+
+        TableColumn<TableValues, Integer> meanCol = new TableColumn<>("Mean");
+        meanCol.setCellValueFactory(new PropertyValueFactory<>("meanValue"));
+        meanCol.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
+        table.getColumns().add(meanCol);
+
+        TableColumn<TableValues, Integer> medianCol = new TableColumn<>("Median");
+        medianCol.setCellValueFactory(new PropertyValueFactory<>("medianValue"));
+        medianCol.prefWidthProperty().bind(table.widthProperty().multiply(0.13));
+        table.getColumns().add(medianCol);
+
+        TableColumn<TableValues, Integer> minCol = new TableColumn<>("Min");
+        minCol.setCellValueFactory(new PropertyValueFactory<>("minValue"));
+        minCol.prefWidthProperty().bind(table.widthProperty().multiply(0.08));
+        table.getColumns().add(minCol);
+
+        TableColumn<TableValues, Integer> maxCol = new TableColumn<>("Max");
+        maxCol.setCellValueFactory(new PropertyValueFactory<>("maxValue"));
+        maxCol.setCellFactory(tc -> new TableCell<>() {
+
+
+            @Override
+            protected void updateItem(Integer value, boolean empty) {
+                super.updateItem(value, empty);
+                NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+                currencyFormat.setMaximumFractionDigits(0);
+                setText(empty ? "" : currencyFormat.format(value));
+            }
+
+        });
+        maxCol.prefWidthProperty().bind(table.widthProperty().subtract(
+                neighborhoodCol.widthProperty().add(bikeCountCol.widthProperty())
+                        .add(propertyCountCol.widthProperty()).add(meanCol.widthProperty())
+                        .add(medianCol.widthProperty()).add(minCol.widthProperty())
+        ));
+
+        table.getColumns().add(maxCol);
+
+        //maxCol.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
+
+
+        //table.getColumns().add(maxCol);
+    }
 
 
      private void toggleLayer(FeatureLayer layer, boolean addLayer) {
