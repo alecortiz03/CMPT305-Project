@@ -17,7 +17,7 @@ public class TableValues {
     @Override
     public String toString() {
         return "TableValues{" +
-                "bikeCount=" + bikeCount +
+                "bikeCount=" + bikePaths +
                 ", propertyCount=" + propertyCount +
                 ", meanValue=" + meanValue +
                 ", medianValue=" + medianValue +
@@ -55,13 +55,6 @@ public class TableValues {
 
     public int getBikePaths() {
         return bikePaths;
-    // Observer management
-    public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
-
-    public void removeObserver(Observer observer) {
-        observers.remove(observer);
     }
 
     private void notifyObservers() {
@@ -71,11 +64,11 @@ public class TableValues {
     }
 
     public int getBikeCount() {
-        return bikeCount;
+        return bikePaths;
     }
 
     public void setBikeCount(int bikeCount) {
-        this.bikeCount = bikeCount;
+        this.bikePaths = bikeCount;
         notifyObservers();
     }
 
@@ -88,7 +81,7 @@ public class TableValues {
         notifyObservers();
     }
 
-    public int getMeanValue() {
+    public long getMeanValue() {
         return meanValue;
     }
 
