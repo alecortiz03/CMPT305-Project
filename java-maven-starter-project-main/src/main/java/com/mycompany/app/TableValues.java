@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TableValues {
-    private int bikeCount;
+    private String neighborhood;
+    private int bikePaths;
     private int propertyCount;
-    private int meanValue;
+    private long meanValue;
     private int medianValue;
     private int minValue;
     private int maxValue;
@@ -27,8 +28,20 @@ public class TableValues {
     }
 
     // Constructor
-    public TableValues(int bikeCount, int propertyCount, int meanValue, int medianValue, int minValue, int maxValue) {
-        this.bikeCount = bikeCount;
+    public TableValues() {
+        this.neighborhood = "";
+        this.bikePaths = 0;
+        this.propertyCount = 0;
+        this.meanValue = 0;
+        this.medianValue = 0;
+        this.minValue = 0;
+        this.maxValue = 0;
+    }
+
+
+    public TableValues(String neighborhood, int bikePaths, int propertyCount, long meanValue, int medianValue, int minValue, int maxValue) {
+        this.neighborhood = neighborhood;
+        this.bikePaths = bikePaths;
         this.propertyCount = propertyCount;
         this.meanValue = meanValue;
         this.medianValue = medianValue;
@@ -36,6 +49,12 @@ public class TableValues {
         this.maxValue = maxValue;
     }
 
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public int getBikePaths() {
+        return bikePaths;
     // Observer management
     public void addObserver(Observer observer) {
         observers.add(observer);
@@ -86,11 +105,12 @@ public class TableValues {
         this.medianValue = medianValue;
         notifyObservers();
     }
+      
 
     public int getMinValue() {
         return minValue;
     }
-
+      
     public void setMinValue(int minValue) {
         this.minValue = minValue;
         notifyObservers();

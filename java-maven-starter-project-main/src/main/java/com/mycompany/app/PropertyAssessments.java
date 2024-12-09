@@ -6,6 +6,7 @@ package com.mycompany.app;
  * -----------------------------------------------------------
  */
 
+import java.io.File;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -156,6 +157,9 @@ public class PropertyAssessments {
     }
     // Method to create a list of PropertyAssessment objects from a CSV file
     public PropertyAssessments createAssessment(String csvFileName) {
+        File file = new File(csvFileName);
+        System.out.println(file.getAbsolutePath());
+
         // Initialize an empty list to store assessments
         PropertyAssessments assessments = new PropertyAssessments();
         try {
@@ -209,6 +213,8 @@ public class PropertyAssessments {
 
     // Method to read data from a CSV file and return it as a 2D array
     private static String[][] readData(String csvFileName) throws IOException {
+        File file = new File(csvFileName);
+        System.out.println(file.getAbsolutePath());
         String[][] data; // 2D array to store data
         int index = 0; // Initialize index to 0
         
