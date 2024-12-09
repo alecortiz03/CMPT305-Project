@@ -72,9 +72,11 @@ public class TableValues {
     public int getMinValue() {
         return minValue;
     }
-      
 
 
+    public long getMeanValue() {
+        return meanValue;
+    }
     public int getMaxValue() {
         return maxValue;
     }
