@@ -2,11 +2,13 @@ package com.mycompany.app;
 
 import java.io.IOException;
 
+
 public class Main {
     public static void main(String[] args) throws IOException {
-        BikeDAO bikeDAO = new BikeDAO();
-        System.out.println(bikeDAO.getTableValues("cromdale"));
-    }
+        String bikeRackURL = "https://data.edmonton.ca/resource/vd4b-a4iv.csv";
+        BuildBikeRouteData buildBikeRouteData = new BuildBikeRouteData();
+        BikeRoutes bikeRoutes = buildBikeRouteData.BuildBikeRouteData(bikeRackURL);
+//        System.out.println(bikeRoutes.getRoute(1));
 }
 
 

@@ -12,7 +12,6 @@ public class TableValues {
     private int minValue;
     private int maxValue;
 
-    private final List<Observer> observers = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -23,7 +22,6 @@ public class TableValues {
                 ", medianValue=" + medianValue +
                 ", minValue=" + minValue +
                 ", maxValue=" + maxValue +
-                ", observers=" + observers +
                 '}';
     }
 
@@ -56,65 +54,30 @@ public class TableValues {
     public int getBikePaths() {
         return bikePaths;
     }
+    // Observer management
 
-    private void notifyObservers() {
-        for (Observer observer : observers) {
-            observer.update(this);
-        }
-    }
 
-    public int getBikeCount() {
-        return bikePaths;
-    }
 
-    public void setBikeCount(int bikeCount) {
-        this.bikePaths = bikeCount;
-        notifyObservers();
-    }
 
     public int getPropertyCount() {
         return propertyCount;
-    }
-
-    public void setPropertyCount(int propertyCount) {
-        this.propertyCount = propertyCount;
-        notifyObservers();
-    }
-
-    public long getMeanValue() {
-        return meanValue;
-    }
-
-    public void setMeanValue(int meanValue) {
-        this.meanValue = meanValue;
-        notifyObservers();
     }
 
     public int getMedianValue() {
         return medianValue;
     }
 
-    public void setMedianValue(int medianValue) {
-        this.medianValue = medianValue;
-        notifyObservers();
-    }
       
 
     public int getMinValue() {
         return minValue;
     }
       
-    public void setMinValue(int minValue) {
-        this.minValue = minValue;
-        notifyObservers();
-    }
+
 
     public int getMaxValue() {
         return maxValue;
     }
 
-    public void setMaxValue(int maxValue) {
-        this.maxValue = maxValue;
-        notifyObservers();
-    }
+
 }
