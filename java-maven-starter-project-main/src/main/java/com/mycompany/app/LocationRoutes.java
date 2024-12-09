@@ -20,6 +20,10 @@ public class LocationRoutes {
         this.routes.add(location);
         }
 
+    public List<Location> getLocations(){
+        return this.routes;
+    }
+
     @Override
     public String toString() {
     StringBuilder result = new StringBuilder();

@@ -15,48 +15,49 @@
  * limitations under the License.
  */
 
- package com.mycompany.app;
+package com.mycompany.app;
 
- import com.esri.arcgisruntime.ArcGISRuntimeEnvironment;
- import com.esri.arcgisruntime.concurrent.ListenableFuture;
- import com.esri.arcgisruntime.layers.FeatureCollectionLayer;
- import com.esri.arcgisruntime.layers.FeatureLayer;
- import com.esri.arcgisruntime.mapping.ArcGISMap;
- import com.esri.arcgisruntime.mapping.GeoElement;
- import com.esri.arcgisruntime.mapping.Viewpoint;
- import com.esri.arcgisruntime.mapping.view.IdentifyLayerResult;
- import com.esri.arcgisruntime.mapping.view.MapView;
- import com.esri.arcgisruntime.portal.Portal;
- import com.esri.arcgisruntime.portal.PortalItem;
- 
- import javafx.application.Application;
+import com.esri.arcgisruntime.ArcGISRuntimeEnvironment;
+import com.esri.arcgisruntime.concurrent.ListenableFuture;
+import com.esri.arcgisruntime.layers.FeatureCollectionLayer;
+import com.esri.arcgisruntime.layers.FeatureLayer;
+import com.esri.arcgisruntime.mapping.ArcGISMap;
+import com.esri.arcgisruntime.mapping.GeoElement;
+import com.esri.arcgisruntime.mapping.Viewpoint;
+import com.esri.arcgisruntime.mapping.view.IdentifyLayerResult;
+import com.esri.arcgisruntime.mapping.view.MapView;
+import com.esri.arcgisruntime.portal.Portal;
+import com.esri.arcgisruntime.portal.PortalItem;
+
+import javafx.application.Application;
 import javafx.application.Platform;
- import javafx.collections.FXCollections;
- import javafx.collections.ObservableList;
- import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
- import javafx.geometry.Point2D;
- import javafx.geometry.Pos;
- import javafx.scene.Scene;
- import javafx.scene.control.*;
- import javafx.scene.control.cell.PropertyValueFactory;
- import javafx.scene.input.MouseEvent;
- import javafx.scene.layout.*;
- import javafx.stage.Stage;
+import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
- import java.text.NumberFormat;
- import java.util.List;
+import java.text.NumberFormat;
+import java.util.List;
 
 import org.json.JSONObject;
 
 
 public class App extends Application {
- 
+
     private MapView mapView;
     private ArcGISMap map1;
     private ArcGISMap map2;
@@ -67,69 +68,69 @@ public class App extends Application {
     private double longitude;
     private TableView<TableValues> table; //have a TableView object containing a class think of this as a row in the table
     private ObservableList<TableValues> values;
- 
-     public static void main(String[] args) {
-         Application.launch(args);
-     }
- 
-     @Override
-     public void start(Stage stage) {
-        
-        
-         // Set the title and size of the stage and show it
-         stage.setTitle("City of Edmonton Bike Routes");
-         stage.setWidth(1280);
-         stage.setHeight(800);
-         stage.show();
 
-         //create the table
-         createTable();
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) {
 
 
-         // Create a BorderPane as the root layout
-         BorderPane borderPane = new BorderPane();
-         Scene scene = new Scene(borderPane);
-         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+        // Set the title and size of the stage and show it
+        stage.setTitle("City of Edmonton Bike Routes");
+        stage.setWidth(1280);
+        stage.setHeight(800);
+        stage.show();
 
-         stage.setScene(scene);
- 
-         // Note: it is not best practice to store API keys in source code.
-         String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGmU_I7A-_kGUQSnF7Q-oQyQRV-g4hD99UbwxWZmJdnlTR5H7BS9-dhS2ZV7l8VmblhYq1WMiweHSHAcQp-2GvfoJf_UySN5EQv_59SCJt-JQiWJgxQ9yMcLm0LMnP8DhaEhvQvXEZXql3fn5fQw7rBWJ2s7NhSJ1VTTROOO-o0B9I1jwtlzYyR1cY5y75eXu_3YZmVLr_WE828LszzoRIuvAT1_MCnmWKIq";
-         ArcGISRuntimeEnvironment.setApiKey(yourApiKey);
- 
-         // Create the MapView to display the maps
-         mapView = new MapView();
- 
-         // Create two maps with different basemaps or content
-         Portal portal = new Portal("https://www.arcgis.com", false);
- 
-         String itemId1 = "1ae528f03a75414fa574287f52e306c0";
-         PortalItem portalItem1 = new PortalItem(portal, itemId1);
-         map1 = new ArcGISMap(portalItem1);
-
-         String itemId2= "1fa7f000f33f406eadf4123b9f426325";
-         PortalItem portalItem2 = new PortalItem(portal, itemId2);
-         FeatureLayer nLayer = new FeatureLayer(portalItem2);
-
-         String itemId3 = "8a2f8b857f1647ba8c1f95974dfde427";
-         PortalItem portalItem3 = new PortalItem(portal, itemId3);
-         FeatureLayer bikeLayer = new FeatureLayer(portalItem3);
+        //create the table
+        createTable();
 
 
+        // Create a BorderPane as the root layout
+        BorderPane borderPane = new BorderPane();
+        Scene scene = new Scene(borderPane);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
+        stage.setScene(scene);
+
+        // Note: it is not best practice to store API keys in source code.
+        String yourApiKey = "AAPTxy8BH1VEsoebNVZXo8HurKi7aeFYVUcn_aZ7X7LtCGmU_I7A-_kGUQSnF7Q-oQyQRV-g4hD99UbwxWZmJdnlTR5H7BS9-dhS2ZV7l8VmblhYq1WMiweHSHAcQp-2GvfoJf_UySN5EQv_59SCJt-JQiWJgxQ9yMcLm0LMnP8DhaEhvQvXEZXql3fn5fQw7rBWJ2s7NhSJ1VTTROOO-o0B9I1jwtlzYyR1cY5y75eXu_3YZmVLr_WE828LszzoRIuvAT1_MCnmWKIq";
+        ArcGISRuntimeEnvironment.setApiKey(yourApiKey);
+
+        // Create the MapView to display the maps
+        mapView = new MapView();
+
+        // Create two maps with different basemaps or content
+        Portal portal = new Portal("https://www.arcgis.com", false);
+
+        String itemId1 = "1ae528f03a75414fa574287f52e306c0";
+        PortalItem portalItem1 = new PortalItem(portal, itemId1);
+        map1 = new ArcGISMap(portalItem1);
+
+        String itemId2= "1fa7f000f33f406eadf4123b9f426325";
+        PortalItem portalItem2 = new PortalItem(portal, itemId2);
+        FeatureLayer nLayer = new FeatureLayer(portalItem2);
+
+        String itemId3 = "8a2f8b857f1647ba8c1f95974dfde427";
+        PortalItem portalItem3 = new PortalItem(portal, itemId3);
+        FeatureLayer bikeLayer = new FeatureLayer(portalItem3);
 
 
-         // Set the initial map to map1
-         mapView.setMap(map1);
-         //mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
-         getCurrentLocation();
-         mapView.setPrefWidth(700);
 
-         
-         
- 
-         
- 
-         borderPane.setLeft(mapView);
+
+        // Set the initial map to map1
+        mapView.setMap(map1);
+        //mapView.setViewpoint(new Viewpoint(53.5381, -113.4937, 240000));
+        getCurrentLocation();
+        mapView.setPrefWidth(700);
+
+
+
+
+
+
+        borderPane.setLeft(mapView);
 
 
 
@@ -138,7 +139,7 @@ public class App extends Application {
 
         // ------------------- City Name Label -------------------
         Label cityName = new Label("Map of the City of Edmonton");
-        cityName.getStyleClass().add("custom-city-name-label");        
+        cityName.getStyleClass().add("custom-city-name-label");
         // ------------------- Address Bar -------------------
         TextField addressField = new TextField();
         addressField.setPromptText("Enter address or search term");
@@ -152,7 +153,7 @@ public class App extends Application {
 
         // Create the Toggle button
         toggleButton = new ToggleButton("Neighbourhood View");
-        
+
 
         toggleButton2 = new ToggleButton("Bike Route View");
 
@@ -174,7 +175,12 @@ public class App extends Application {
                 response.setText("You searched for: " + enteredText);  // Display search text in response label
 
                 // Create a BikeDAO instance
-                BikeDAO bikeDAO = new BikeDAO();
+                BikeDAO bikeDAO = null;
+                try {
+                    bikeDAO = new BikeDAO();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
                 // Use BikeDAO to get data for the entered neighbourhood
                 TableValues tableValues = bikeDAO.getTableValues(enteredText);
@@ -210,8 +216,8 @@ public class App extends Application {
 
         // Add right panel to the center of the BorderPane
         borderPane.setCenter(rightPanel); // Right section for the UI elements
-        //getCurrentLocation();        
-     }
+        //getCurrentLocation();
+    }
 
 
     private void createTable() {
@@ -279,7 +285,7 @@ public class App extends Application {
     }
 
 
-     private void toggleLayer(FeatureLayer layer, boolean addLayer) {
+    private void toggleLayer(FeatureLayer layer, boolean addLayer) {
         if (addLayer) {
             map1.getOperationalLayers().add(layer);
         } else {
@@ -313,22 +319,22 @@ public class App extends Application {
             }
         }).start();
     }
-    
 
 
 
 
 
 
- 
-     /**
-      * Stops and releases all resources used in application.
-      */
-     @Override
-     public void stop() {
-         if (mapView != null) {
-             mapView.dispose();
-         }
-     }
- }
+
+
+    /**
+     * Stops and releases all resources used in application.
+     */
+    @Override
+    public void stop() {
+        if (mapView != null) {
+            mapView.dispose();
+        }
+    }
+}
  
