@@ -61,12 +61,13 @@ public class DataManager {
         return locationRoutes;
     }
 
-    // Generate table information for both data sets
     public TableValues getTableInformation(String neighbourhoodName) {
-        // Bike routes stats
         PropertyAssessments neighbourhood = this.propertyAssessments.searchNeighborhood(neighbourhoodName);
+
         int bikeCount = bikeRoutes.getRoutes().size();
         String neighborhood = neighbourhoodName;
+
+
 
         // Property assessments stats
         int propertyCount = neighbourhood.getRecordAmt();
