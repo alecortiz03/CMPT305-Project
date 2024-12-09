@@ -32,7 +32,7 @@ public class PropertyAssessments {
     }
     public PropertyAssessments(List<PropertyAssessment> assessments){
         this.assessments = assessments;
-    
+
     }
 
     // Method to get a specific assessment by index
@@ -80,10 +80,10 @@ public class PropertyAssessments {
                     this.assessmentClasses.add(assessment.getWardClass().getClass(i).getClassName().toLowerCase());
                 }
             }
+        }
+        classes = this.assessmentClasses;
+        return classes;
     }
-    classes = this.assessmentClasses;
-    return classes;
-}
     // Method to calculate the median assessed value
     public int calcMedian() {
         if (this.getRecordAmt() == 1) {
@@ -141,7 +141,7 @@ public class PropertyAssessments {
     public PropertyAssessments searchNeighborhood(String usrInput){
         List<PropertyAssessment> neighborhoodAssessmentsList = this.assessments.parallelStream().filter(p -> p.getNeighborhood().getNeighborhood().toLowerCase().equals(usrInput)).collect(Collectors.toList());
         PropertyAssessments neighborhoodAssessments = new PropertyAssessments(neighborhoodAssessmentsList);
-        return neighborhoodAssessments; // Return the list of assessments in the neighborhood   
+        return neighborhoodAssessments; // Return the list of assessments in the neighborhood
     }
     public PropertyAssessments searchAssessmentClass(String usrInput){
         PropertyAssessments assessmentClass = new PropertyAssessments(); // Initialize a new list to store assessments in the neighborhood
@@ -153,7 +153,7 @@ public class PropertyAssessments {
 
             }
         }
-        return assessmentClass; // Return the list of assessments in the neighborhood     
+        return assessmentClass; // Return the list of assessments in the neighborhood
     }
     // Method to create a list of PropertyAssessment objects from a CSV file
     public PropertyAssessments createAssessment(String csvFileName) {
@@ -165,10 +165,10 @@ public class PropertyAssessments {
         try {
             // Read data from the CSV file
             String[][] data = readData(csvFileName);
-            
             // Iterate through each row of data
             for (String[] row : data) {
                 AssessmentClasses wardClass = new AssessmentClasses();
+                if (row.length < 5) {continue;}
                 // Create a new PropertyAssessment object and add it to the list
                 if (row[16].equals(" ") && row[17].equals(" ")){
                     Address address = new Address(row[2], row[3]);
@@ -201,7 +201,7 @@ public class PropertyAssessments {
                     assessments.addAssessment(assessment);
                 }
             }
-            
+
             // Return the list of assessments
             return assessments;
         } catch (IOException e) {
@@ -217,20 +217,20 @@ public class PropertyAssessments {
         System.out.println(file.getAbsolutePath());
         String[][] data; // 2D array to store data
         int index = 0; // Initialize index to 0
-        
+
         // Try-with-resources statement to create a stream to read the CSV file. Automatically closes the resource.
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(csvFileName))) {
             reader.readLine(); // Skip the header line
-            
+
             int initialSize = 100; // Initial size of the data array
             data = new String[initialSize][]; // Initialize the data array
-            
+
             String line; // Variable to store each line of the file
-            
+
             // Read the file line by line
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(","); // Split the line by commas
-                
+
                 // Handle cases where the number of values is less than expected
                 if (values.length == 16) {
                     values = Arrays.copyOf(values, values.length + 2);
