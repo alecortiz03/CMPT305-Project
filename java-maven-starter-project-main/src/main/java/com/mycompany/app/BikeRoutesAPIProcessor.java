@@ -59,7 +59,7 @@ public class BikeRoutesAPIProcessor{
         }
 
         if (coordinates.size() >= 2) {
-            return new Location(coordinates.get(0), coordinates.get(1));
+            return new Location(coordinates.get(1), coordinates.get(0));
         } else {
             return null; // or throw an exception if appropriate
         }

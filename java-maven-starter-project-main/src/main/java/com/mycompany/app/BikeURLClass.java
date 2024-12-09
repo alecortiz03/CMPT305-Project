@@ -16,7 +16,7 @@ public class BikeURLClass {
 
     public BikeURLClass(String url) {
         this.url = url;
-        urlInformation = URLParse();
+        urlInformation = this.URLParse();
     }
 
     public List<String> getUrlInformation() {
@@ -30,7 +30,7 @@ public class BikeURLClass {
         int limit = 10000; // The maximum is 50000
         int entriesCount = 100000;
         try {
-            while (entriesCount < (limit)) {
+            while (entriesCount > (limit)) {
                 // Create URL with pagination parameters
                 String paginatedUrl = this.url + "?$limit=" + limit + "&$offset=" + offset;
                 URL url = new URL(paginatedUrl);

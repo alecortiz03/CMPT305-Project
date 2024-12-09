@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,10 +8,15 @@ public class BikeDAO {
     private final DataManager dataManager;
     private final List<Observer> observers = new ArrayList<>();
 
+
+
     // Constructor
-    public BikeDAO() {
+    public BikeDAO() throws IOException {
         this.dataManager = DataManager.getInstance();
+        this.dataManager.loadPolygons("https://data.edmonton.ca/resource/65fr-66s6.geojson");
         this.dataManager.loadBikeRoutes("https://data.edmonton.ca/resource/vd4b-a4iv.csv");
+        this.dataManager.loadPropertyAssessments("Property_Assessment_Data.csv");
+
     }
 
     // Add an observer
@@ -40,10 +46,7 @@ public class BikeDAO {
     }
 
     // Get table values for a specific neighborhood and notify observers
-    public TableValues getNeighbourTableValues(String neighbourhoodName) {
-        String propertiesFile = "Property_Assessment_Data.csv";
-        dataManager.loadPropertyAssessments(propertiesFile);
-
+    public TableValues getTableValues(String neighbourhoodName) {
         TableValues tableValues = dataManager.getTableInformation(neighbourhoodName);
 
         // Notify observers about the new table values
@@ -51,4 +54,6 @@ public class BikeDAO {
 
         return tableValues;
     }
+
+
 }
